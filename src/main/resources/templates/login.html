@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css" th:href="@{/css/login.css}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo-image">
+            <img src="votelogo.png" th:src="@{/images/votelogo.png}" alt="logo">
+        </div>
+        <div class="form-field">
+            <main id="main-holder">
+                <div id="login-error-msg-holder" th:if="${param.error}">
+                    <p id="login-error-msg">Invalid username and/or password<span id="error-msg-second-line"></span></p>
+                </div>
+
+                <div class="login-content">
+                    <form th:action="@{/login}" method="post">
+                        <img src="avatar.svg" alt="avatar" th:src="@{/images/avatar.svg}">
+                        <h2 class="title">Welcome</h2>
+                           <div class="input-div one">
+                              <div class="i">
+                                      <i class="fas fa-user"></i>
+                              </div>
+                              <div class="div">
+                                      <h5>Aadhar Number</h5>
+                                      <input type="text" class="input" name="userId">
+                              </div>
+                           </div>
+                           <div class="input-div pass">
+                              <div class="i"> 
+                                   <i class="fas fa-lock"></i>
+                              </div>
+                              <div class="div">
+                                   <h5>Password</h5>
+                                   <input type="password" class="input" name="password">
+                           </div>
+                        </div>
+                        <a href="#">Forgot Password?</a>
+                        <input type="submit" class="btn" value="Login">
+                    </form>
+                </div>
+                <span>Don't have an account? <a class="linkControl" href="register.html" style="display: inline; color: #6666CA; font-weight: bolder;">Register here</a></span>
+            </main>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/902e5a7c60.js" crossorigin="anonymous"></script>
+    <script th:src="@{/js/login.js}" src="/js/login.js"></script>
+</body>
+
+</html>

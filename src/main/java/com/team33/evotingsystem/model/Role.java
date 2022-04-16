@@ -1,9 +1,6 @@
 package com.team33.evotingsystem.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,11 +19,6 @@ public class Role {
     @Column(name = "role_name")
     private	String roleName;
 
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_role",
-            joinColumns = {@JoinColumn(name = "role_id")},
-            inverseJoinColumns = {@JoinColumn(name = "user_id")}
-    )
+    @ManyToMany(mappedBy = "roles")
     List<LoginCredentials> credentials;
 }

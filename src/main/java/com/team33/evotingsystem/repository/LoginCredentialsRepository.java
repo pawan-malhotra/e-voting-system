@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface LoginCredentialsRepository extends JpaRepository<LoginCredentials,String> {
-    @Override
-    Optional<LoginCredentials> findById(String userId);
+public interface LoginCredentialsRepository extends JpaRepository<LoginCredentials,Integer> {
+
+    Optional<LoginCredentials> findByUserId(int userId);
 }

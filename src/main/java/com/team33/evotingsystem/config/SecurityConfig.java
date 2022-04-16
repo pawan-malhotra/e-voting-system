@@ -17,13 +17,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     CustomUserDetailService customUserDetailService;
+    @Autowired
+    CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                 .antMatchers("/","/register","/home").permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/admin/**").hasAnyRole("ADMIN","ELECTORAL", "VOTER")
                 .antMatchers("/electoral/**").hasAnyRole("ELECTORAL")
                 .antMatchers("/voter/**").hasAnyRole("VOTER")
                 .anyRequest().authenticated()
@@ -32,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .permitAll()
                 .failureUrl("/login?error=true")
-                .defaultSuccessUrl("/")
+                .successHandler(customAuthenticationSuccessHandler)
                 .usernameParameter("userId")
                 .passwordParameter("password")
                 .and()

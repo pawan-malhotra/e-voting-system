@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.sql.Date;
 
 @Getter
@@ -11,16 +12,15 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class UserDetails {
+public class UserDetails implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @NotNull
-    private String userId;
+    private int userId;
 
     private int voterId;
-    private String password;
     private String firstName;
     private String lastName;
     private Date dob;
