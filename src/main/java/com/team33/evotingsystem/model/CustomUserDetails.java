@@ -23,7 +23,7 @@ public class CustomUserDetails extends LoginCredentials implements UserDetails {
 
     @Override
     public String getUsername() {
-        return String.valueOf(super.getUserId());
+        return super.getUserId();
     }
 
     @Override

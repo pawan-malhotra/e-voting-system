@@ -18,19 +18,19 @@ public class UserDetails implements Serializable {
     private int id;
 
     @NotNull
-    private int userId;
+    private String userId;
 
-    private int voterId;
+    private String voterId;
     private String firstName;
     private String lastName;
     private Date dob;
-    private int age;
     private String gender;
     private String religion;
+    private String caste;
     private String address;
+    private String state;
+    private String city;
     private String phoneNo;
-    private String constituency;
-    private String district;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_login_credentials", referencedColumnName = "user_id")

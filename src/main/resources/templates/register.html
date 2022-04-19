@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/css/login.css" th:href="@{/css/login.css}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo-image">
+            <img src="/images/votelogo.png" th:src="@{/images/votelogo.png}" alt="logo">
+        </div>
+        <div class="form-field">
+            <main id="main-holder">
+                <div id="login-error-msg-holder" style="margin-top: 20px;" th:if="${param.error}">
+                    <p id="login-error-msg" th:text="${param.message}"></p>
+                </div>
+
+                <div class="login-content" style="margin-top: 20px;">
+                    <form th:action="@{/register}" th:object="${registerDTO}" method="post">
+                        <img src="avatar.svg" alt="avatar" th:src="@{/images/avatar.svg}">
+                        <h2 class="title" style="font-size: 1.5em;">Voter's Registration Portal</h2>
+                        <div class="input-div one">
+                            <div class="i">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Aadhar Number</h5>
+                                <input type="text" class="input" name="userId" required>
+                            </div>
+                        </div>
+                        <div class="input-div pass">
+                            <div class="i">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Password</h5>
+                                <input type="password" class="input" name="password" required>
+                            </div>
+                        </div>
+
+
+                        <div class="input-div pass">
+                            <div class="i">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Confirm Password</h5>
+                                <input type="password" class="input" name="confirmPassword" required>
+                            </div>
+                        </div>
+
+                        <div class="input-div one">
+                            <div class="i">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="div" style="margin-top: 5px;">
+                                <h5>First Name</h5>
+                                <input type="text" class="input" name="firstName" required>
+                            </div>
+                        </div>
+                        <div class="input-div one">
+                            <div class="i">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Last Name</h5>
+                                <input type="text" class="input" name="lastName">
+                            </div>
+                        </div>
+                        
+
+                        <div class="input-div one">
+                            <div class="i">
+                                <i class="fa fa-birthday-cake"></i>
+                            </div>
+                            <div class="div">
+                                <h5>DOB</h5>
+                                <input type="date" class="input" id="date-input" required name="dob">
+                            </div>
+                        </div>
+
+                        <div class="input-div one">
+                            <div class="i">
+                                <i class="fa fa-venus-mars"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Gender</h5>
+                                <select class="" name="gender" required>
+                                    <option selected value="" disabled>Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-div one">
+                            <div class="i">
+                                <i class="fas fa-dharmachakra"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Religion</h5>
+                                <select class="" name="religion" required>
+                                    <option selected value="" disabled>Select Religion</option>
+                                    <option value="Hindu">Hindu</option>
+                                    <option value="Muslims">Muslims</option>
+                                    <option value="Christians">Christians</option>
+                                    <option value="Sikhs">Sikhs</option>
+                                    <option value="Jains">Jains</option>
+                                    <option value="Buddhists">Buddhists</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-div one">
+                            <div class="i">
+                                <i class="fas fa-dharmachakra"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Caste</h5>
+                                <select class="" name="caste" required>
+                                    <option selected value="" disabled>Select Caste</option>
+                                    <option value="SC/ST">SC/ST</option>
+                                    <option value="OBC">OBC</option>
+                                    <option value="General">General</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="input-div one">
+                            <div class="i">
+                                <i class="fa fa-home"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Address</h5>
+                                <input type="text" class="input" name="address" required>
+                            </div>
+                        </div>
+
+                        <div class="input-div one">
+                            <div class="i">
+                                <i class="fa-solid fa-tree-city"></i>
+                            </div>
+                            <div class="div">
+                                <h5>State</h5>
+                                <select onchange="print_city('state', this.selectedIndex);" id="sts" name ="state" required>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-div one">
+                            <div class="i">
+                                <i class="fa-solid fa-tree-city"></i>
+                            </div>
+                            <div class="div">
+                                <h5>city</h5>
+                                <select class="" id ="state" name="city" required>
+                                </select>
+                                
+                            </div>
+                        </div>
+
+                        <div class="input-div one">
+                            <div class="i">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Phone No</h5>
+                                <input type="text" class="input" name="phoneNo" required>
+                            </div>
+                        </div>
+                        <a href="#"></a>
+                        <input type="submit" class="btn" value="Register">
+                    </form>
+                </div>
+                <span style="margin-bottom: 20px;">Already have an account? <a class="linkControl" href="./login.html" th:href="@{/login}" style="display: inline; color: #6666CA; font-weight: bolder;">Login Here</a></span>
+            </main>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/902e5a7c60.js" crossorigin="anonymous"></script>
+    <script th:src="@{/js/login.js}" src="/js/login.js"></script>
+    <script th:src="@{/js/cities.js}" src="/js/cities.js"></script>
+    <script language="javascript">print_state("sts");</script>
+</body>
+
+</html>

@@ -21,4 +21,9 @@ public class Role {
 
     @ManyToMany(mappedBy = "roles")
     List<LoginCredentials> credentials;
+
+    public Role(int roleId, String roleName) {
+        this.roleId = roleId;
+        this.roleName = roleName;
+    }
 }

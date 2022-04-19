@@ -19,7 +19,7 @@ public class LoginCredentials implements Serializable {
 
     @NotNull
     @Column(name = "user_id")
-    private int userId;
+    private String userId;
 
     @Column(name = "password")
     private String password;
