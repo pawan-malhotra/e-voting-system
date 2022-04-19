@@ -1,5 +1,6 @@
 package com.team33.evotingsystem.controller;
 
+import com.team33.evotingsystem.dto.ForgotPasswordDTO;
 import com.team33.evotingsystem.dto.RegisterDTO;
 import com.team33.evotingsystem.service.LoginRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Optional;
 
 @Controller
 public class LoginRegisterController {
@@ -67,7 +67,6 @@ public class LoginRegisterController {
         }
         LocalDate dob = registerDTO.getDob().toLocalDate();
         long year = ChronoUnit.YEARS.between(dob,LocalDate.now());
-        System.out.println(year);
         if(year < 18) {
             return "redirect:/register?error=true&message="+"Age should be minimum 18 years!";
         }
@@ -113,5 +112,44 @@ public class LoginRegisterController {
             return "redirect:/login";
         else
             return "redirect:/register?error=true&message="+"please try after some time!";
+    }
+
+    @GetMapping("/forgot-password")
+    public String forgotPasswordPage(Model model) {
+        model.addAttribute("forgotPasswordDto", new ForgotPasswordDTO());
+        return "forgot-password";
+    }
+
+    @PostMapping("/forgot-password")
+    public String resetPassword(@ModelAttribute("forgotPasswordDto") ForgotPasswordDTO passwordDto) {
+        // checking for null
+        if (passwordDto == null) {
+            return "redirect:/forgot-password?error=true&message="+"please try after some time!";
+        }
+        // userId validation
+        try {
+            if (passwordDto.getUserId().trim().length() != 12) {
+                return "redirect:/forgot-password?error=true&message="+"please enter valid aadhar number!";
+            }
+
+            Double.parseDouble(passwordDto.getUserId().trim());
+        } catch (NumberFormatException n) {
+            return "redirect:/forgot-password?error=true&message="+"please enter valid aadhar number!";
+        }
+        if(loginRegistrationService.findByUserId(passwordDto.getUserId().trim()).isEmpty()) {
+            return "redirect:/forgot-password?error=true&message="+"user not registered!";
+        }
+        // password validation
+        if (passwordDto.getPassword().trim().isEmpty() || passwordDto.getPassword().trim().isBlank()) {
+            return "redirect:/forgot-password?error=true&message="+"password should not empty!";
+        }
+        if(!passwordDto.getPassword().trim().equals(passwordDto.getConfirmPassword().trim())) {
+            return "redirect:/forgot-password?error=true&message="+"password miss-matched!";
+        }
+
+        if(loginRegistrationService.resetPassword(passwordDto))
+            return "redirect:/login";
+        else
+            return "redirect:/forgot-password?error=true&message="+"please try after some time!";
     }
 }

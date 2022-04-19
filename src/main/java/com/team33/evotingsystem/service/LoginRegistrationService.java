@@ -1,9 +1,11 @@
 package com.team33.evotingsystem.service;
 
+import com.team33.evotingsystem.dto.ForgotPasswordDTO;
 import com.team33.evotingsystem.dto.RegisterDTO;
 import com.team33.evotingsystem.model.LoginCredentials;
 import com.team33.evotingsystem.model.Role;
 import com.team33.evotingsystem.model.UserDetails;
+import com.team33.evotingsystem.repository.LoginCredentialsRepository;
 import com.team33.evotingsystem.repository.RoleRepository;
 import com.team33.evotingsystem.repository.UserDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class LoginRegistrationService {
     UserDetailsRepository userDetailsRepository;
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    LoginCredentialsRepository loginCredentialsRepository;
 
     public boolean saveUserDetails(RegisterDTO dto) {
         UserDetails user = new UserDetails();
@@ -51,5 +55,14 @@ public class LoginRegistrationService {
 
     public Optional<UserDetails> findByUserId(String userId) {
         return userDetailsRepository.findByUserId(userId);
+    }
+
+    public boolean resetPassword(ForgotPasswordDTO dto) {
+        int updatedCredential = loginCredentialsRepository.updatePassword(
+                bCryptPasswordEncoder.encode(dto.getPassword().trim()),
+                dto.getUserId().trim()
+        );
+
+        return updatedCredential>0;
     }
 }
