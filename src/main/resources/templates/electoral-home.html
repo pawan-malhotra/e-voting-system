@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electoral|Home page</title>
+    <link rel="stylesheet" href="/css/electoral-home.css" th:href="@{/css/electoral-home.css}">
+</head>
+<body>
+    <div class="header-container">
+        <div class="header-card">
+            <div class="part-1">
+                <img src="/images/header_animation_300.gif" th:src="@{/images/header_animation_300.gif}" alt="logo">
+            </div>
+            <div class="part-2">
+                <p>ELECTORAL</p>
+                <p id="portal">PORTTAL</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-container">
+        <div class="cards">
+            <div class="card">
+                <img src="/images/view-voterid.gif" th:src="@{/images/view-voterid.gif}" alt="view voterid request">
+                <p>View Voter Id Requests</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="show-details">
+        <h1>Voter Id Requests</h1>
+        <div class="details-cards">
+            <form action="" method="post">
+                <div class="details-card">
+                    <div class="card-wrapper">
+                        <p>Name</p>
+                        <div class="buttons">
+                            <i class="fa-solid fa-angle-down"></i>
+                            <input type="checkbox" name="">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="datas">
+                            <div class="data">
+                                <p>Age : </p>
+                                <p>18 years</p>
+                            </div>
+                            <div class="data">
+                                <p>Age : </p>
+                                <p>18 years</p>
+                            </div>
+                            <div class="data">
+                                <p>Age : </p>
+                                <p>18 years</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="button"><span>Update </span></button>
+            </form>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/902e5a7c60.js" crossorigin="anonymous"></script>
+    <script src="electoral-home.js"></script>
+</body>
+</html>
