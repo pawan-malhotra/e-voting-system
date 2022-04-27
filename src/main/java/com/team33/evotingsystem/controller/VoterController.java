@@ -8,6 +8,6 @@ public class VoterController {
 
     @GetMapping("/voter")
     public String voterPage() {
-        return "voter";
+        return "voter-home";
     }
 }

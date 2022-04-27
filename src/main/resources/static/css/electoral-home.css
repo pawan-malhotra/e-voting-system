@@ -176,15 +176,22 @@ body {
     opacity: 0;
     margin: 0;
     transition: all ease .25s;
+    /*display: flex;
+    justify-content:center;
+    align-items: center;*/
 }
 
 .card-content .datas {
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.datas .data {
+    margin: 12px;
 }
 
 .show {

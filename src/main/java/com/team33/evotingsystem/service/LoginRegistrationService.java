@@ -65,4 +65,8 @@ public class LoginRegistrationService {
 
         return updatedCredential>0;
     }
+
+    public boolean addVoterIdByUserId(String voterId, String userId) {
+        return userDetailsRepository.addVoterIdByUserId(voterId,userId) > 0;
+    }
 }

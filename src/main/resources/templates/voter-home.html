@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Home</title>
+    <link rel="stylesheet" href="voter-home.css" th:href="@{/css/voter-home.css}">
+</head>
+
+<body>
+    <div class="header-container">
+        <div class="header-card">
+            <div class="part-1">
+                <img src="voter-header.gif" th:src="@{/images/voter-header.gif}" alt="logo">
+            </div>
+            <div class="part-2">
+                <p>VOTER</p>
+                <p id="portal">PORTAL</p>
+            </div>
+        </div>
+    </div>
+    <div class="card-container">
+        <div class="cards">
+            <div class="card">
+                <img src="request-voterid.gif" th:src="@{/images/request-voterid.gif}" alt="">
+                <p>Request For Voter Id</p>
+            </div>
+            <div class="card">
+                <img src="view-voterid.gif" th:src="@{/images/view-voterid.gif}" alt="">
+                <p>View Voter Id</p>
+            </div>
+            <div class="card">
+                <img src="calender.gif" th:src="@{/images/calender.gif}" alt="">
+                <p>View Election Schedules</p>
+            </div>
+            <div class="card">
+                <img src="cast-vote.gif" th:src="@{/images/cast-vote.gif}" alt="">
+                <p>Cast Vote</p>
+            </div>
+            <div class="card">
+                <img src="view.gif" th:src="@{/images/view.gif}" alt="">
+                <p>View Election Results</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

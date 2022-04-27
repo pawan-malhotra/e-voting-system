@@ -22,38 +22,59 @@
 
     <div class="card-container">
         <div class="cards">
-            <div class="card">
+            <div class="card" th:onclick="|window.location.href='/electoral/view-voter-id-requests'|">
                 <img src="/images/view-voterid.gif" th:src="@{/images/view-voterid.gif}" alt="view voterid request">
                 <p>View Voter Id Requests</p>
             </div>
         </div>
     </div>
 
-    <div class="show-details">
+    <div class="show-details" th:if="${show}">
         <h1>Voter Id Requests</h1>
+        <h3 style="color:green;" th:if="${param.success}">Successfully Generated!</h3>
         <div class="details-cards">
-            <form action="" method="post">
-                <div class="details-card">
+            <form th:action="@{/electoral/generate-voter-id}" th:object="${voterIdRequestDto}" method="post">
+                <div class="details-card" th:each="user : ${userDetails}">
                     <div class="card-wrapper">
-                        <p>Name</p>
+                        <p th:text="${user.firstName + ' '+ user.lastName}"></p>
                         <div class="buttons">
                             <i class="fa-solid fa-angle-down"></i>
-                            <input type="checkbox" name="">
+                            <input type="checkbox" name="userId" th:value="${user.userId}" th:field="*{userId}">
                         </div>
                     </div>
                     <div class="card-content">
                         <div class="datas">
                             <div class="data">
-                                <p>Age : </p>
-                                <p>18 years</p>
+                                <span>DOB : </span>
+                                <span th:text="${user.dob}"></span>
                             </div>
                             <div class="data">
-                                <p>Age : </p>
-                                <p>18 years</p>
+                                <span>Gender : </span>
+                                <span th:text="${user.gender}"></span>
                             </div>
                             <div class="data">
-                                <p>Age : </p>
-                                <p>18 years</p>
+                                <span>Religion : </span>
+                                <span th:text="${user.religion}"></span>
+                            </div>
+                            <div class="data">
+                                <span>Caste : </span>
+                                <span th:text="${user.caste}"></span>
+                            </div>
+                            <div class="data">
+                                <span>Address : </span>
+                                <span th:text="${user.address}"></span>
+                            </div>
+                            <div class="data">
+                                <span>State : </span>
+                                <span th:text="${user.state}"></span>
+                            </div>
+                            <div class="data">
+                                <span>City : </span>
+                                <span th:text="${user.city}"></span>
+                            </div>
+                            <div class="data">
+                                <span>Phone No : </span>
+                                <span th:text="${user.phoneNo}"></span>
                             </div>
                         </div>
                     </div>
@@ -63,6 +84,6 @@
         </div>
     </div>
     <script src="https://kit.fontawesome.com/902e5a7c60.js" crossorigin="anonymous"></script>
-    <script src="electoral-home.js"></script>
+    <script src="electoral-home.js" th:src="@{/js/electoral-home.js}"></script>
 </body>
 </html>
