@@ -9,22 +9,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Date;
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-public class VoterIdRequestDetails {
+public class ElectionDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private String userId;
-    private String status;
-
-    public VoterIdRequestDetails(String userId, String status) {
-        this.userId = userId;
-        this.status = status;
-    }
+    private String electionName;
+    private Date electionDate;
+    private String votingTime;
 }

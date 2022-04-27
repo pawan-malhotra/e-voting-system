@@ -69,4 +69,8 @@ public class LoginRegistrationService {
     public boolean addVoterIdByUserId(String voterId, String userId) {
         return userDetailsRepository.addVoterIdByUserId(voterId,userId) > 0;
     }
+
+    public Optional<String> findVoterIdByUserId(String userId) {
+        return userDetailsRepository.findVoterIdByUserId(userId);
+    }
 }

@@ -114,3 +114,50 @@ body {
     align-items: center;
     color: black;
 }
+
+.show-details {
+    width: 100%;
+    height: fit-content;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.show-details .details-cards {
+    width: 90%;
+    height: fit-content;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 1px solid black;
+}
+
+.request-card {
+    width: 80%;
+    height: 50px;
+    background-color: white;
+    box-shadow: 5px 5px 12px gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px auto;
+    padding: 20px;
+}
+
+.request-card a {
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: rgb(68, 186, 233);
+    color: white;
+    font-weight: bold;
+    transition: all .25s;
+}
+
+.request-card a:hover {
+    transform: scale(1.01);
+    box-shadow: 5px 5px 8px gray;
+}

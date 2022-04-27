@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -42,5 +43,13 @@ public class VoterIdRequestDetailsService {
 
     public void deleteByUserId(String userId) {
         voterIdRequestDetailsRepository.deleteByUserId(userId);
+    }
+
+    public Optional<VoterIdRequestDetails> findByUserId(String userId) {
+        return voterIdRequestDetailsRepository.findByUserId(userId);
+    }
+
+    public boolean save(VoterIdRequestDetails details) {
+        return voterIdRequestDetailsRepository.save(details).getId() > 0;
     }
 }

@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voter Home</title>
-    <link rel="stylesheet" href="voter-home.css" th:href="@{/css/voter-home.css}">
+    <link rel="stylesheet" href="/static/css/voter-home.css" th:href="@{/css/voter-home.css}">
 </head>
 
 <body>
     <div class="header-container">
         <div class="header-card">
             <div class="part-1">
-                <img src="voter-header.gif" th:src="@{/images/voter-header.gif}" alt="logo">
+                <img src="/static/images/voter-header.gif" th:src="@{/images/voter-header.gif}" alt="logo">
             </div>
             <div class="part-2">
                 <p>VOTER</p>
@@ -23,28 +23,64 @@
     </div>
     <div class="card-container">
         <div class="cards">
-            <div class="card">
-                <img src="request-voterid.gif" th:src="@{/images/request-voterid.gif}" alt="">
+            <div class="card" th:onclick="|window.location.href='/voter/request-for-voter-id'|">
+                <img src="/static/images/request-voterid.gif" th:src="@{/images/request-voterid.gif}" alt="">
                 <p>Request For Voter Id</p>
             </div>
-            <div class="card">
-                <img src="view-voterid.gif" th:src="@{/images/view-voterid.gif}" alt="">
+            <div class="card" th:onclick="|window.location.href='/voter/view-voter-id'|">
+                <img src="/static/images/view-voterid.gif" th:src="@{/images/view-voterid.gif}" alt="">
                 <p>View Voter Id</p>
             </div>
-            <div class="card">
-                <img src="calender.gif" th:src="@{/images/calender.gif}" alt="">
+            <div class="card" th:onclick="|window.location.href='/voter/view-election-details'|">
+                <img src="/static/images/calender.gif" th:src="@{/images/calender.gif}" alt="">
                 <p>View Election Schedules</p>
             </div>
             <div class="card">
-                <img src="cast-vote.gif" th:src="@{/images/cast-vote.gif}" alt="">
+                <img src="/static/images/cast-vote.gif" th:src="@{/images/cast-vote.gif}" alt="">
                 <p>Cast Vote</p>
             </div>
             <div class="card">
-                <img src="view.gif" th:src="@{/images/view.gif}" alt="">
+                <img src="/static/images/view.gif" th:src="@{/images/view.gif}" alt="">
                 <p>View Election Results</p>
             </div>
         </div>
     </div>
+
+    <!-- request voter Id section -->
+    <div class="show-details" th:if="${status}">
+        <h1>Request For Voter Id</h1>
+        <div class="details-cards">
+            <div class="request-card">
+                <p style="font-weight: bolder;">Get Your Voter Id</p>
+                <p style="color:green;font-weight:bold;" th:text="${status}">status</p>
+                <a href="" th:href="@{/voter/send-request}" th:if="${status == 'Not Yet Requested'}">Send Request</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- view voter Id section -->
+    <div class="show-details" th:if="${voterId}">
+        <h1>View Voter Id</h1>
+        <div class="details-cards">
+            <div class="request-card">
+                <p style="font-weight: bolder;">Your Voter Id</p>
+                <p style="color:green;font-weight:bold;" th:text="${voterId}">status</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Election Details section -->
+    <div class="show-details" th:if="${electionDetails}">
+        <h1>View Election Schedules</h1>
+        <div class="details-cards">
+            <div class="request-card" th:each="details : ${electionDetails}">
+                <p style="font-weight: bolder; color:blue;" th:text="${'Election Name : '+details.electionName}">Election Name</p>
+                <p style="color:green;font-weight:bold;" th:text="${'Election Date : '+details.electionDate}">Date</p>
+                <p style="color:red;font-weight:bold;" th:text="${'Voting Time : '+details.votingTime}">Voting Time</p>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>

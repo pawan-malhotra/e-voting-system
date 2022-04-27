@@ -17,4 +17,7 @@ public interface UserDetailsRepository extends JpaRepository<UserDetails,Integer
     @Transactional
     @Query("update UserDetails set voterId=:voterId where userId=:userId")
     int addVoterIdByUserId(String voterId, String userId);
+
+    @Query("select voterId from UserDetails where userId=:userId")
+    Optional<String> findVoterIdByUserId(String userId);
 }
